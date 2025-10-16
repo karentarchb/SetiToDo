@@ -35,3 +35,46 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import "@ionic/angular/css/palettes/dark.system.css";
+
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.error-snackbar {
+  background-color: #f44336 !important;
+  color: white !important;
+
+  .mat-mdc-snack-bar-label {
+    color: white !important;
+  }
+
+  .mat-mdc-button {
+    color: white !important;
+  }
+}
+
+.mdc-snackbar__surface {
+  min-width: 280px !important;
+  max-width: 90vw !important;
+  border-radius: 12px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+}
+
+.mat-mdc-snack-bar-container {
+  margin: 1rem !important;
+
+  @media (max-width: 600px) {
+    margin: 0.5rem !important;
+
+    .mdc-snackbar__surface {
+      min-width: calc(100vw - 2rem) !important;
+    }
+  }
+}
