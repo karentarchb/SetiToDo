@@ -1,0 +1,7 @@
+{
+  "name": "Setitodo",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
