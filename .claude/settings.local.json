@@ -14,7 +14,11 @@
       "Bash(git push:*)",
       "Bash(npx ionic:*)",
       "Bash(git pull:*)",
-      "Bash(git stash:*)"
+      "Bash(git stash:*)",
+      "Bash(npx cap sync)",
+      "Bash(npm uninstall:*)",
+      "Bash(npx cordova platform add android)",
+      "Bash(npx cordova:*)"
     ],
     "deny": [],
     "ask": []
