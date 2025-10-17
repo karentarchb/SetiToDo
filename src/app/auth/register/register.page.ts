@@ -46,7 +46,7 @@ export class RegisterPage {
 
     try {
       await this.authService.register(email, password, displayName);
-      await this.router.navigate(['/home']);
+      await this.router.navigate(['/tabs']);
     } catch (error: any) {
       this.showError(this.getErrorMessage(error.code));
     } finally {

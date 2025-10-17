@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -10,13 +11,16 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { AuthLayoutComponent } from './components/auth-layout/auth-layout.component';
+import { TaskModalComponent } from './components/task-modal/task-modal.component';
 
 @NgModule({
   declarations: [
-    AuthLayoutComponent
+    AuthLayoutComponent,
+    TaskModalComponent
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     IonicModule,
     MatCardModule,
     MatFormFieldModule,
@@ -28,7 +32,9 @@ import { AuthLayoutComponent } from './components/auth-layout/auth-layout.compon
   ],
   exports: [
     AuthLayoutComponent,
+    TaskModalComponent,
     CommonModule,
+    ReactiveFormsModule,
     IonicModule,
     MatCardModule,
     MatFormFieldModule,

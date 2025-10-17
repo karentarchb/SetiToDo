@@ -12,15 +12,15 @@ const routes: Routes = [
     loadChildren: () => import('./auth/register/register.module').then(m => m.RegisterPageModule)
   },
   {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then(m => m.HomePageModule),
+    path: 'tabs',
+    loadChildren: () => import('./pages/tabs/tabs.module').then(m => m.TabsPageModule),
     canActivate: [authGuard]
   },
   {
     path: '',
     redirectTo: 'login',
     pathMatch: 'full'
-  },
+  }
 ];
 
 @NgModule({

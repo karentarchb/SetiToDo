@@ -1,20 +1,50 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-title>Inicio</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">Inicio</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <div class="welcome-container">
+    <div class="welcome-header">
+      <div class="welcome-icon">
+        <ion-icon name="checkbox-outline"></ion-icon>
+      </div>
+      <h1 class="welcome-title">SetiToDo</h1>
+      <p class="welcome-greeting" *ngIf="userName">Hola! {{ userName }}</p>
+      <p class="welcome-description">Organiza tus tareas de manera eficiente y aumenta tu productividad</p>
+    </div>
+
+    <div class="welcome-content">
+      <mat-card class="info-card">
+        <mat-card-content>
+          <div class="card-header">
+            <div class="card-icon">
+              <ion-icon name="list"></ion-icon>
+            </div>
+            <h3>Gestiona tus Tareas</h3>
+          </div>
+          <p>Ve a la sección de Tareas para crear y administrar tus actividades diarias.</p>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="info-card">
+        <mat-card-content>
+          <div class="card-header">
+            <div class="card-icon">
+              <ion-icon name="person"></ion-icon>
+            </div>
+            <h3>Tu Perfil</h3>
+          </div>
+          <p>Personaliza tu experiencia desde la sección de Perfil.</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
   </div>
 </ion-content>

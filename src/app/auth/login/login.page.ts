@@ -39,7 +39,7 @@ export class LoginPage {
 
     try {
       await this.authService.login(email, password);
-      await this.router.navigate(['/home']);
+      await this.router.navigate(['/tabs']);
     } catch (error: any) {
       this.showError(this.getErrorMessage(error.code));
     } finally {

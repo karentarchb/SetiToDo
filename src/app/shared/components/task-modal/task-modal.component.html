@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ isEditMode ? 'Editar Tarea' : 'Nueva Tarea' }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cancel()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="modal-content">
+    <form [formGroup]="taskForm">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Descripción</mat-label>
+        <textarea
+          matInput
+          formControlName="description"
+          rows="2"
+          placeholder="¿Qué necesitas hacer?"></textarea>
+        <mat-error *ngIf="taskForm.get('description')?.hasError('required')">
+          La descripción es requerida
+        </mat-error>
+      </mat-form-field>
+
+      <div class="time-row">
+        <mat-form-field appearance="outline" class="time-field">
+          <mat-label>Hora inicio</mat-label>
+          <input matInput type="time" formControlName="startTime">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="time-field">
+          <mat-label>Hora fin</mat-label>
+          <input matInput type="time" formControlName="endTime">
+        </mat-form-field>
+      </div>
+
+      <div class="repeat-section">
+        <label class="section-label">¿Se repite?</label>
+        <div class="days-selector">
+          <ion-chip
+            *ngFor="let day of weekDays"
+            [outline]="!day.selected"
+            [color]="day.selected ? 'primary' : 'medium'"
+            (click)="toggleDay(day)">
+            {{ day.label }}
+          </ion-chip>
+        </div>
+      </div>
+    </form>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <div class="footer-buttons">
+      <button mat-raised-button (click)="cancel()">
+        Cancelar
+      </button>
+      <button
+        mat-raised-button
+        (click)="save()"
+        [disabled]="!taskForm.valid">
+        {{ isEditMode ? 'Actualizar' : 'Guardar' }}
+      </button>
+    </div>
+  </ion-toolbar>
+</ion-footer>

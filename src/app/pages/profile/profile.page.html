@@ -1,0 +1,58 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Perfil</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="profile-container">
+    <div class="profile-header">
+      <div class="avatar">
+        <ion-icon name="person"></ion-icon>
+      </div>
+      <h2 class="user-name" *ngIf="user">{{ user.displayName || 'Usuario' }}</h2>
+      <p class="user-email" *ngIf="user">{{ user.email }}</p>
+    </div>
+
+    <div class="profile-content">
+      <mat-card class="profile-card">
+        <mat-card-content>
+          <h3><ion-icon name="information-circle"></ion-icon> Información de la Cuenta</h3>
+          <div class="info-item">
+            <span class="info-label">Nombre:</span>
+            <span class="info-value">{{ user?.displayName || 'No especificado' }}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Correo:</span>
+            <span class="info-value">{{ user?.email }}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">ID de Usuario:</span>
+            <span class="info-value">{{ user?.uid }}</span>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="profile-card">
+        <mat-card-content>
+          <h3><ion-icon name="settings"></ion-icon> Configuración</h3>
+          <p class="card-description">Gestiona tu cuenta y preferencias</p>
+          <button
+            mat-raised-button
+            color="warn"
+            (click)="logout()"
+            class="logout-button">
+            <mat-icon>exit_to_app</mat-icon>
+            Cerrar Sesión
+          </button>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</ion-content>
