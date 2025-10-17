@@ -10,6 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 import { AuthLayoutComponent } from './components/auth-layout/auth-layout.component';
 import { TaskModalComponent } from './components/task-modal/task-modal.component';
@@ -30,7 +31,8 @@ import { TaskModalComponent } from './components/task-modal/task-modal.component
     MatIconModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    NgxMaterialTimepickerModule
   ],
   exports: [
     AuthLayoutComponent,
@@ -45,7 +47,8 @@ import { TaskModalComponent } from './components/task-modal/task-modal.component
     MatIconModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    NgxMaterialTimepickerModule
   ]
 })
 export class SharedModule { }

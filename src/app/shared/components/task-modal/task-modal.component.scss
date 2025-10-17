@@ -99,6 +99,20 @@
         .mat-mdc-form-field.mat-focused .mat-mdc-floating-label {
           color: #ffffff !important;
         }
+
+        ngx-material-timepicker-toggle {
+          button {
+            color: rgba(255, 255, 255, 0.7) !important;
+
+            &:hover {
+              color: #ffffff !important;
+            }
+          }
+
+          svg {
+            fill: rgba(255, 255, 255, 0.7) !important;
+          }
+        }
       }
     }
   }
@@ -189,5 +203,40 @@ ion-footer {
   ion-toolbar {
     --background: transparent;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
+::ng-deep {
+  .timepicker-overlay {
+    z-index: 10000 !important;
+  }
+
+  .timepicker-backdrop-overlay {
+    z-index: 9999 !important;
+  }
+
+  .timepicker__header {
+    background-color: #667eea !important;
+  }
+
+  .clock-face__clock-hand {
+    background-color: #667eea !important;
+
+    &::before {
+      background-color: #667eea !important;
+    }
+
+    &::after {
+      background-color: #667eea !important;
+    }
+  }
+
+  .clock-face__number > span.active,
+  .clock-face__number.active > span {
+    background-color: #667eea !important;
+  }
+
+  .timepicker-button {
+    color: #667eea !important;
   }
 }
