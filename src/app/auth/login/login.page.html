@@ -43,14 +43,9 @@
       {{ isLoading ? 'Iniciando sesión...' : 'Iniciar Sesión' }}
     </button>
 
-    <div style="text-align: center; margin-top: 1.5rem;">
-      <button
-        mat-button
-        color="accent"
-        type="button"
-        (click)="navigateToRegister()">
-        ¿No tienes cuenta? Regístrate
-      </button>
+    <div class="auth-link-container">
+      <span class="auth-link-text">¿No tienes una cuenta?</span>
+      <a class="auth-link-action" (click)="navigateToRegister()">Regístrate</a>
     </div>
   </form>
 </app-auth-layout>

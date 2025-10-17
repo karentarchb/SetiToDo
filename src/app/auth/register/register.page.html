@@ -99,14 +99,9 @@
       {{ isLoading ? 'Registrando...' : 'Registrarse' }}
     </button>
 
-    <div style="text-align: center; margin-top: 1.5rem;">
-      <button
-        mat-button
-        color="accent"
-        type="button"
-        (click)="navigateToLogin()">
-        ¿Ya tienes cuenta? Inicia sesión
-      </button>
+    <div class="auth-link-container">
+      <span class="auth-link-text">¿Ya tienes una cuenta?</span>
+      <a class="auth-link-action" (click)="navigateToLogin()">Inicia sesión</a>
     </div>
   </form>
 </app-auth-layout>
