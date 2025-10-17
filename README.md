@@ -167,6 +167,8 @@ Las credenciales de Firebase están configuradas en los archivos de environment:
 **Proyecto Firebase**: setitodo
 **App ID**: 1:262598191869:web:YOUR_APP_ID
 
+> **Nota**: Para efectos de esta prueba técnica, los archivos de environment fueron incluidos en el repositorio. Sin embargo, es importante mencionar que esto es una **mala práctica** en proyectos reales. Los archivos de configuración con credenciales sensibles deben estar en `.gitignore` y gestionarse mediante variables de entorno o servicios de secrets management (AWS Secrets Manager, Azure Key Vault, etc.).
+
 ---
 
 ## 📋 Historial de Commits - Git Flow
