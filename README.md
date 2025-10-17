@@ -1,263 +1,171 @@
 # SetiToDo
 
-Es una app realizada con Ionic y Angular que nos permite registrar nuestras tareas o actividades de una manera divertida.
+Aplicación móvil híbrida para gestión de tareas desarrollada con Ionic y Angular, con sistema de autenticación completo mediante Firebase.
+
+## Descripción del Proyecto
+
+SetiToDo es una aplicación de gestión de tareas que permite a los usuarios registrarse, autenticarse y organizar sus actividades de manera eficiente. El proyecto está construido con tecnologías modernas y sigue principios de arquitectura limpia para garantizar mantenibilidad y escalabilidad.
 
 ## Funcionalidades
 
-Podremos:
+- Registro de usuarios con validación personalizada
+- Inicio de sesión con Firebase Authentication
+- Gestión de tareas (crear, completar, eliminar)
+- Protección de rutas mediante guards
+- Diseño responsive optimizado para dispositivos móviles
+- Notificaciones en tiempo real con Material Snackbar
 
-- Agregar nuevas tareas
-- Marcar tareas como completadas
-- Eliminar tareas
-- Iniciar sesión con correo y contraseña (Firebase)
-- Registrarse como nuevo usuario
+## Stack Tecnológico
 
-## Tecnologías
-
-- **Ionic 8**: Framework para desarrollo de aplicaciones móviles híbridas
-- **Angular 20**: Framework de desarrollo web
-- **Firebase**: Plataforma para autenticación de usuarios
-- **Angular Material**: Componentes de interfaz
-- **Bootstrap 5**: Estilos y diseño responsive
+- **Ionic 8**: Framework híbrido para aplicaciones móviles multiplataforma
+- **Angular 20**: Framework web modular con arquitectura basada en componentes
+- **Firebase Authentication**: Gestión de usuarios y autenticación segura
+- **Angular Material**: Sistema de componentes UI siguiendo Material Design
+- **Bootstrap 5**: Framework CSS para diseño responsive
+- **TypeScript**: Lenguaje tipado para mayor robustez del código
+- **RxJS**: Programación reactiva para manejo de estados y eventos asíncronos
 
 ---
 
-## 📚 Guía de Git Flow - Explicación Simple
+## Arquitectura del Proyecto
 
-### ¿Qué es Git Flow?
+El proyecto sigue una arquitectura limpia basada en capas para separar responsabilidades y facilitar el mantenimiento:
 
-Imagina que estás escribiendo un libro con varios capítulos. Git Flow es como tener diferentes cuadernos para organizar tu trabajo:
-
-1. **Cuaderno Principal (master)** - Es tu libro terminado y publicado. Solo pones aquí las versiones finales.
-2. **Cuaderno de Borrador (develop)** - Aquí escribes y mejoras tus capítulos día a día.
-3. **Cuaderno de Revisión (qa)** - Aquí otra persona revisa tu trabajo antes de publicarlo.
-4. **Hojas Sueltas (feature/*)** - Para escribir cada capítulo nuevo por separado.
-
-### Ramas del Proyecto
+### Estructura de Carpetas
 
 ```
-master (producción - lo que ven los usuarios)
+src/
+├── app/
+│   ├── core/                    # Funcionalidad central de la aplicación
+│   │   ├── guards/              # Protección de rutas (authGuard)
+│   │   ├── services/            # Servicios singleton (AuthService)
+│   │   ├── models/              # Interfaces y modelos de datos (User)
+│   │   ├── interfaces/          # Contratos de servicios (IAuthService)
+│   │   └── validators/          # Validadores personalizados (email, password-match)
+│   ├── shared/                  # Componentes y módulos reutilizables
+│   │   ├── components/          # Componentes compartidos (auth-layout)
+│   │   └── shared.module.ts     # Módulo de exportación de componentes comunes
+│   ├── auth/                    # Módulo de autenticación
+│   │   ├── login/               # Página de inicio de sesión
+│   │   └── register/            # Página de registro
+│   └── home/                    # Página principal de la aplicación
+└── environments/                # Configuración por entorno (dev/prod)
+```
+
+### Decisiones Arquitectónicas
+
+**1. Separación Core/Shared/Features**
+- `core/`: Servicios singleton y funcionalidad esencial cargada una sola vez
+- `shared/`: Componentes y módulos reutilizables en múltiples features
+- `auth/`, `home/`: Features modulares con lazy loading
+
+**Beneficio**: Reducción del bundle inicial, mejor organización del código y facilita el trabajo en equipo al tener responsabilidades claras.
+
+**2. Validators Personalizados**
+- `email.validator.ts`: Valida que el correo tenga formato correcto con dominio .com
+- `password-match.validator.ts`: Validación cruzada entre campos de contraseña
+
+**Beneficio**: Reutilización de lógica de validación y mejor experiencia de usuario con feedback en tiempo real.
+
+**3. Componente Auth-Layout Reutilizable**
+- Layout compartido entre login y register usando `<ng-content>`
+- Estilos glassmorphism con gradientes y animaciones
+
+**Beneficio**: Reducción de código duplicado (DRY principle) y consistencia visual entre páginas de autenticación.
+
+**4. Patrón Repository con Interfaces**
+- `IAuthService` define el contrato del servicio
+- `AuthService` implementa la interfaz
+
+**Beneficio**: Facilita testing con mocks y permite cambiar la implementación sin afectar los componentes (Dependency Inversion Principle).
+
+**5. Functional Guards**
+- `authGuard` implementado como función standalone usando `inject()`
+
+**Beneficio**: Sintaxis moderna de Angular, menor boilerplate y mejor tree-shaking.
+
+---
+
+## Git Flow Implementado
+
+Este proyecto utiliza Git Flow como estrategia de ramificación para mantener un flujo de trabajo organizado y permitir despliegues controlados.
+
+### Estructura de Ramas
+
+```
+master (producción)
   ↑
-  qa (revisión antes de publicar)
+qa (testing/QA)
   ↑
-  develop (donde trabajamos todos los días)
+develop (desarrollo activo)
   ↑
-  feature/* (cada nueva función)
+feature/* (nuevas funcionalidades)
 ```
 
-### ¿Por qué usar Git Flow?
+### ¿Por Qué Implementamos Git Flow?
 
-✅ **Organización**: Todo en su lugar, como cajones ordenados
-✅ **Seguridad**: Si algo sale mal, no afecta lo que ya funciona
-✅ **Trabajo en equipo**: Varias personas pueden trabajar sin estorbarse
-✅ **Historial claro**: Puedes ver qué se hizo y cuándo
-✅ **Versiones**: Puedes volver a una versión anterior si es necesario
+**1. Separación de Ambientes**
+- `master`: Código estable listo para producción
+- `qa`: Código en fase de testing antes de producción
+- `develop`: Integración continua de nuevas features
+- `feature/*`: Desarrollo aislado de funcionalidades específicas
+
+**Beneficio en nuestro proyecto**: Al ser una aplicación móvil con autenticación, necesitamos garantizar que el código en producción esté completamente probado. QA nos permite validar la integración con Firebase antes de afectar a usuarios reales.
+
+**2. Historial de Cambios Claro**
+- Commits semánticos siguiendo Conventional Commits (feat, fix, docs, etc.)
+- Merges documentados entre ramas
+
+**Beneficio en nuestro proyecto**: Facilita el tracking de cambios en el sistema de autenticación y permite revertir features específicas sin afectar otras funcionalidades.
+
+**3. Trabajo Colaborativo**
+- Desarrollo paralelo de features sin conflictos
+- Code review antes de merge a develop
+
+**Beneficio en nuestro proyecto**: Permite escalar el equipo de desarrollo manteniendo la calidad del código.
+
+### Convenciones de Commits
+
+| Tipo | Uso en el Proyecto |
+|------|-------------------|
+| `feat:` | Nuevas funcionalidades (login, registro, tareas) |
+| `fix:` | Corrección de bugs |
+| `style:` | Cambios de estilos CSS/SCSS |
+| `refactor:` | Mejoras de código sin cambiar funcionalidad |
+| `docs:` | Actualizaciones de documentación |
+| `chore:` | Configuración y tareas de mantenimiento |
 
 ---
 
-## 🔄 Cómo Trabajar con Git Flow (Paso a Paso)
-
-### Paso 1: Empezar una nueva función
+## Instalación y Desarrollo
 
 ```bash
-# 1. Ve al cuaderno de borrador
-git checkout develop
-
-# 2. Asegúrate de tener la última versión
-git pull origin develop
-
-# 3. Crea una hoja nueva para tu función
-git checkout -b feature/nombre-de-tu-funcion
-```
-
-**Ejemplo real:**
-```bash
-git checkout develop
-git pull origin develop
-git checkout -b feature/agregar-tareas
-```
-
-### Paso 2: Trabajar en tu función
-
-```bash
-# 1. Haz tus cambios en el código (edita archivos)
-
-# 2. Guarda los cambios
-git add .
-
-# 3. Escribe qué hiciste
-git commit -m "feat: agregar botón para crear nuevas tareas"
-```
-
-### Paso 3: Terminar la función
-
-```bash
-# 1. Vuelve al cuaderno de borrador
-git checkout develop
-
-# 2. Une tu trabajo con el borrador
-git merge feature/agregar-tareas
-
-# 3. Sube los cambios
-git push origin develop
-```
-
-### Paso 4: Enviar a revisión
-
-```bash
-# 1. Ve al cuaderno de revisión
-git checkout qa
-
-# 2. Trae todo el trabajo del borrador
-git merge develop
-
-# 3. Súbelo para que lo revisen
-git push origin qa
-```
-
-### Paso 5: Publicar (después de aprobar)
-
-```bash
-# 1. Ve al cuaderno principal
-git checkout master
-
-# 2. Trae el trabajo revisado
-git merge qa
-
-# 3. Ponle una etiqueta de versión
-git tag -a v1.0.0 -m "Versión 1.0.0"
-
-# 4. Publica todo
-git push origin master --tags
-```
-
----
-
-## 📝 Tipos de Mensajes en los Commits
-
-Como escribir una nota clara sobre lo que hiciste:
-
-| Tipo | ¿Cuándo usarlo? | Ejemplo |
-|------|----------------|---------|
-| `feat:` | Agregaste algo nuevo | `feat: agregar botón de eliminar tarea` |
-| `fix:` | Arreglaste un error | `fix: corregir error al guardar tareas` |
-| `style:` | Cambiaste colores o diseño | `style: cambiar color del botón a azul` |
-| `refactor:` | Mejoraste el código sin cambiar qué hace | `refactor: simplificar función de login` |
-| `docs:` | Actualizaste documentación | `docs: agregar instrucciones de instalación` |
-| `test:` | Agregaste pruebas | `test: agregar prueba para login` |
-| `chore:` | Tareas de mantenimiento | `chore: actualizar dependencias` |
-
-### Ejemplos completos:
-
-```bash
-git commit -m "feat: implementar registro de usuarios con Firebase"
-git commit -m "fix: corregir validación de correo electrónico"
-git commit -m "style: mejorar diseño de la página de login"
-git commit -m "docs: actualizar README con instrucciones de GitFlow"
-```
-
----
-
-## 🚀 Comandos Rápidos
-
-### Ver en qué rama estás:
-```bash
-git branch
-```
-
-### Ver todas las ramas:
-```bash
-git branch -a
-```
-
-### Cambiar de rama:
-```bash
-git checkout nombre-rama
-```
-
-### Ver qué cambios tienes:
-```bash
-git status
-```
-
-### Ver historial de cambios:
-```bash
-git log --oneline
-```
-
----
-
-## 💡 Consejos Importantes
-
-1. **Siempre trabaja en develop o en una feature**, nunca directamente en master
-2. **Haz commits pequeños y frecuentes**, es mejor guardar poco a poco
-3. **Escribe mensajes claros**, para que otros (y tú en el futuro) entiendan qué hiciste
-4. **Prueba tu código antes de hacer commit**, asegúrate de que funciona
-5. **Haz pull antes de push**, para tener los últimos cambios
-
----
-
-## 🛠️ Instalación y Desarrollo
-
-### Instalar dependencias:
-```bash
+# Instalar dependencias
 npm install
-```
 
-### Iniciar servidor de desarrollo:
-```bash
+# Iniciar servidor de desarrollo
 npm start
-```
 
-### Compilar para producción:
-```bash
+# Compilar para producción
 npm run build
-```
 
-### Ejecutar pruebas:
-```bash
+# Ejecutar tests
 npm test
-```
 
-### Ejecutar linter:
-```bash
+# Ejecutar linter
 npm run lint
 ```
 
 ---
 
-## 📱 Estructura del Proyecto
+## Configuración de Firebase
 
-```
-src/
-├── app/
-│   ├── auth/              # Módulos de autenticación
-│   │   ├── login/         # Página de inicio de sesión
-│   │   └── register/      # Página de registro
-│   ├── core/              # Servicios y funcionalidad central
-│   │   ├── guards/        # Protección de rutas
-│   │   ├── services/      # Servicios (auth, etc.)
-│   │   ├── models/        # Modelos de datos
-│   │   └── validators/    # Validadores personalizados
-│   ├── shared/            # Componentes compartidos
-│   │   └── components/    # Componentes reutilizables
-│   └── home/              # Página principal
-└── environments/          # Configuración de entornos
-```
+Las credenciales de Firebase están configuradas en los archivos de environment:
+- `src/environments/environment.ts` - Desarrollo
+- `src/environments/environment.prod.ts` - Producción
 
----
-
-## 🔐 Configuración de Firebase
-
-Las credenciales de Firebase están en:
-- `src/environments/environment.ts` (desarrollo)
-- `src/environments/environment.prod.ts` (producción)
-
----
-
-## 📄 Licencia
-
-Este proyecto es de uso educativo.
+**Proyecto Firebase**: setitodo
+**App ID**: 1:262598191869:web:YOUR_APP_ID
 
 ---
 
