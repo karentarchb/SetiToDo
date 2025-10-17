@@ -15,6 +15,7 @@ Aplicación móvil híbrida para gestión de tareas desarrollada con Ionic y Ang
   - [¿Por Qué Implementamos Git Flow?](#por-qué-implementamos-git-flow)
   - [Convenciones de Commits](#convenciones-de-commits)
 - [Instalación y Desarrollo](#instalación-y-desarrollo)
+- [Compilación para Móvil](#compilación-para-móvil)
 - [Configuración de Firebase](#configuración-de-firebase)
 - [Historial de Commits - Git Flow](#-historial-de-commits---git-flow)
 
@@ -37,7 +38,10 @@ SetiToDo es una aplicación de gestión de tareas que permite a los usuarios reg
 
 - **Ionic 8**: Framework híbrido para aplicaciones móviles multiplataforma
 - **Angular 20**: Framework web modular con arquitectura basada en componentes
+- **Apache Cordova 12**: Runtime nativo para empaquetado en Android e iOS
 - **Firebase Authentication**: Gestión de usuarios y autenticación segura
+- **Firebase Firestore**: Base de datos NoSQL en tiempo real
+- **Firebase Remote Config**: Feature flags y configuración remota para A/B testing
 - **Angular Material**: Sistema de componentes UI siguiendo Material Design
 - **Bootstrap 5**: Framework CSS para diseño responsive
 - **TypeScript**: Lenguaje tipado para mayor robustez del código
@@ -173,6 +177,69 @@ npm test
 # Ejecutar linter
 npm run lint
 ```
+
+---
+
+## Compilación para Móvil
+
+Esta aplicación está configurada para ser compilada y ejecutada en dispositivos Android e iOS utilizando Apache Cordova.
+
+### Plataformas Soportadas
+
+- **Android**: API 24+ (Android 7.0 Nougat o superior)
+- **iOS**: iOS 13.0 o superior (requiere macOS y Xcode)
+
+### Guía de Compilación Completa
+
+Para instrucciones detalladas sobre cómo compilar y ejecutar la aplicación en Android e iOS, consulta el archivo **[BUILD.md](BUILD.md)** que incluye:
+
+- Requisitos previos para cada plataforma
+- Configuración de Firebase para Android e iOS
+- Instrucciones paso a paso para compilar
+- Comandos para ejecutar en emuladores y dispositivos físicos
+- Generación de APK/IPA para producción
+- Solución de problemas comunes
+
+### Comandos Rápidos
+
+**Android**:
+```bash
+# Compilar proyecto web
+npm run build
+
+# Ejecutar en emulador
+cordova run android --emulator
+
+# Ejecutar en dispositivo
+cordova run android --device
+
+# Generar APK release
+cordova build android --release
+```
+
+**iOS** (solo macOS):
+```bash
+# Compilar proyecto web
+npm run build
+
+# Ejecutar en simulador
+cordova run ios --emulator
+
+# Ejecutar en dispositivo
+cordova run ios --device
+
+# Abrir en Xcode
+open platforms/ios/Setitodo.xcworkspace
+```
+
+### Archivos de Configuración Firebase
+
+Para que la aplicación funcione correctamente en dispositivos móviles, necesitas agregar los archivos de configuración de Firebase:
+
+**Android**: `platforms/android/app/google-services.json`
+**iOS**: `platforms/ios/Setitodo/Resources/GoogleService-Info.plist`
+
+Consulta [BUILD.md](BUILD.md) para instrucciones detalladas sobre cómo obtener y configurar estos archivos.
 
 ---
 

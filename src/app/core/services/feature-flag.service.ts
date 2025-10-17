@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { RemoteConfig, fetchAndActivate, getBoolean, getValue } from '@angular/fire/remote-config';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class FeatureFlagService {
 
     try {
       this.remoteConfig.settings = {
-        minimumFetchIntervalMillis: 3600000,
+        minimumFetchIntervalMillis: environment.production ? 3600000 : 0,
         fetchTimeoutMillis: 60000
       };
 

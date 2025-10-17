@@ -94,7 +94,7 @@
       mat-raised-button
       color="primary"
       type="submit"
-      [disabled]="isLoading">
+      [disabled]="isLoading || registerForm.invalid">
       <mat-spinner *ngIf="isLoading" diameter="20" style="display: inline-block; margin-right: 8px;"></mat-spinner>
       {{ isLoading ? 'Registrando...' : 'Registrarse' }}
     </button>

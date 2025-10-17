@@ -1,10 +1,22 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from '../../core/services/auth.service';
 import { passwordMatchValidator } from '../../core/validators/password-match.validator';
 import { emailValidator } from '../../core/validators/email.validator';
+
+export function onlyTextValidator(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const value = control.value;
+    if (!value) {
+      return null;
+    }
+    const valid = /^[a-zA-Z\s]*$/.test(value);
+    return valid ? null : { onlyText: 'Este campo solo acepta letras' };
+  };
+}
+
 
 @Component({
   selector: 'app-register',
@@ -25,12 +37,17 @@ export class RegisterPage {
     private snackBar: MatSnackBar
   ) {
     this.registerForm = this.fb.group({
-      firstName: ['', [Validators.required, Validators.minLength(2)]],
-      lastName: ['', [Validators.required, Validators.minLength(2)]],
+      firstName: ['', [Validators.required, Validators.minLength(2), onlyTextValidator()]],
+      lastName: ['', [Validators.required, Validators.minLength(2), onlyTextValidator()]],
       email: ['', [Validators.required, emailValidator()]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', [Validators.required]]
     }, { validators: passwordMatchValidator() });
+  }
+
+  private toPascalCase(text: string): string {
+    if (!text) return '';
+    return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
   }
 
   async onSubmit(): Promise<void> {
@@ -41,11 +58,13 @@ export class RegisterPage {
 
     this.isLoading = true;
 
-    const { firstName, lastName, email, password } = this.registerForm.value;
+    const formValue = this.registerForm.value;
+    const firstName = this.toPascalCase(formValue.firstName);
+    const lastName = this.toPascalCase(formValue.lastName);
     const displayName = `${firstName} ${lastName}`;
 
     try {
-      await this.authService.register(email, password, displayName);
+      await this.authService.register(formValue.email, formValue.password, displayName);
       await this.router.navigate(['/tabs']);
     } catch (error: any) {
       this.showError(this.getErrorMessage(error.code));
@@ -93,9 +112,13 @@ export class RegisterPage {
     if (firstNameControl?.hasError('minlength')) {
       return 'El nombre debe tener al menos 2 caracteres';
     }
+    if (firstNameControl?.hasError('onlyText')) {
+      return 'El nombre solo puede contener letras';
+    }
     return '';
   }
 
+  // MODIFICADO: Se agrega el mensaje para el error 'onlyText'
   getLastNameErrorMessage(): string {
     const lastNameControl = this.registerForm.get('lastName');
     if (lastNameControl?.hasError('required')) {
@@ -103,6 +126,9 @@ export class RegisterPage {
     }
     if (lastNameControl?.hasError('minlength')) {
       return 'El apellido debe tener al menos 2 caracteres';
+    }
+    if (lastNameControl?.hasError('onlyText')) {
+        return 'El apellido solo puede contener letras';
     }
     return '';
   }
