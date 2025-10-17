@@ -10,7 +10,7 @@ export const environment = {
     projectId: 'setitodo',
     storageBucket: 'setitodo.firebasestorage.app',
     messagingSenderId: '262598191869',
-    appId: '1:262598191869:web:YOUR_APP_ID'
+    appId: '1:262598191869:web:06328bbb9576ee7d4bac94'
   }
 };
 
