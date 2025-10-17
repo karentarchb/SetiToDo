@@ -110,6 +110,116 @@
   }
 }
 
+.tasks-container {
+  padding: 2rem 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+
+  .tasks-header {
+    text-align: center;
+    margin-bottom: 2rem;
+
+    .welcome-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 50%;
+      margin-bottom: 1rem;
+      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+
+      ion-icon {
+        font-size: 48px;
+        color: white;
+      }
+    }
+
+    .welcome-title {
+      font-size: 28px;
+      font-weight: 700;
+      color: #667eea;
+      margin: 0 0 0.5rem 0;
+    }
+
+    .welcome-greeting {
+      font-size: 20px;
+      color: #ffffff;
+      font-weight: 600;
+      margin: 0 0 1rem 0;
+    }
+
+    .tasks-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: #909497;
+      margin: 0;
+      line-height: 1.4;
+    }
+  }
+
+  .tasks-list {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 1rem;
+
+    .task-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 0;
+      position: relative;
+
+      .task-checkbox {
+        flex-shrink: 0;
+
+        ::ng-deep {
+          .mdc-checkbox__background {
+            border-color: rgba(255, 255, 255, 0.3) !important;
+          }
+
+          .mdc-checkbox--selected .mdc-checkbox__background {
+            background-color: #667eea !important;
+            border-color: #667eea !important;
+          }
+
+          .mat-mdc-checkbox.mat-accent {
+            --mdc-checkbox-selected-checkmark-color: #ffffff;
+            --mdc-checkbox-selected-focus-icon-color: #667eea;
+            --mdc-checkbox-selected-hover-icon-color: #667eea;
+            --mdc-checkbox-selected-icon-color: #667eea;
+            --mdc-checkbox-selected-pressed-icon-color: #667eea;
+          }
+        }
+      }
+
+      .task-description {
+        flex: 1;
+        font-size: 16px;
+        color: #ffffff;
+        transition: all 0.3s ease;
+
+        &.completed {
+          text-decoration: line-through;
+          color: rgba(255, 255, 255, 0.5);
+        }
+      }
+
+      .task-divider {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: 0;
+        border: none;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+    }
+  }
+}
+
 @media (max-width: 576px) {
   .welcome-container {
     padding: 1.5rem 1rem;
@@ -163,6 +273,47 @@
         }
 
         p {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+
+  .tasks-container {
+    padding: 1.5rem 1rem;
+
+    .tasks-header {
+      margin-bottom: 1.5rem;
+
+      .welcome-icon {
+        width: 60px;
+        height: 60px;
+
+        ion-icon {
+          font-size: 36px;
+        }
+      }
+
+      .welcome-title {
+        font-size: 24px;
+      }
+
+      .welcome-greeting {
+        font-size: 16px;
+      }
+
+      .tasks-title {
+        font-size: 16px;
+      }
+    }
+
+    .tasks-list {
+      padding: 0.75rem;
+
+      .task-item {
+        padding: 0.75rem 0;
+
+        .task-description {
           font-size: 14px;
         }
       }

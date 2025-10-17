@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { AuthLayoutComponent } from './components/auth-layout/auth-layout.component';
 import { TaskModalComponent } from './components/task-modal/task-modal.component';
@@ -28,7 +29,8 @@ import { TaskModalComponent } from './components/task-modal/task-modal.component
     MatButtonModule,
     MatIconModule,
     MatProgressSpinnerModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatCheckboxModule
   ],
   exports: [
     AuthLayoutComponent,
@@ -42,7 +44,8 @@ import { TaskModalComponent } from './components/task-modal/task-modal.component
     MatButtonModule,
     MatIconModule,
     MatProgressSpinnerModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatCheckboxModule
   ]
 })
 export class SharedModule { }

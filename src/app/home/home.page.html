@@ -11,7 +11,7 @@
     </ion-toolbar>
   </ion-header>
 
-  <div class="welcome-container">
+  <div class="welcome-container" *ngIf="tasks.length === 0">
     <div class="welcome-header">
       <div class="welcome-icon">
         <ion-icon name="checkbox-outline"></ion-icon>
@@ -45,6 +45,31 @@
           <p>Personaliza tu experiencia desde la sección de Perfil.</p>
         </mat-card-content>
       </mat-card>
+    </div>
+  </div>
+
+  <div class="tasks-container" *ngIf="tasks.length > 0">
+    <div class="tasks-header">
+      <div class="welcome-icon">
+        <ion-icon name="checkbox-outline"></ion-icon>
+      </div>
+      <h1 class="welcome-title">SetiToDo</h1>
+      <p class="welcome-greeting" *ngIf="userName">Hola! {{ userName }}</p>
+      <h2 class="tasks-title">Tienes tareas por cumplir hoy, completalas o elimina las tareas que no usas</h2>
+    </div>
+
+    <div class="tasks-list">
+      <div class="task-item" *ngFor="let task of displayTasks; let last = last">
+        <mat-checkbox
+          [checked]="task.completed"
+          (change)="toggleTaskComplete(task)"
+          class="task-checkbox">
+        </mat-checkbox>
+        <span class="task-description" [class.completed]="task.completed">
+          {{ truncateDescription(task.description) }}
+        </span>
+        <hr class="task-divider" *ngIf="!last">
+      </div>
     </div>
   </div>
 </ion-content>
