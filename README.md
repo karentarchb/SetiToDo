@@ -2,6 +2,24 @@
 
 Aplicación móvil híbrida para gestión de tareas desarrollada con Ionic y Angular, con sistema de autenticación completo mediante Firebase.
 
+## 📑 Índice
+
+- [Descripción del Proyecto](#descripción-del-proyecto)
+- [Funcionalidades](#funcionalidades)
+- [Stack Tecnológico](#stack-tecnológico)
+- [Arquitectura del Proyecto](#arquitectura-del-proyecto)
+  - [Estructura de Carpetas](#estructura-de-carpetas)
+  - [Decisiones Arquitectónicas](#decisiones-arquitectónicas)
+- [Git Flow Implementado](#git-flow-implementado)
+  - [Estructura de Ramas](#estructura-de-ramas)
+  - [¿Por Qué Implementamos Git Flow?](#por-qué-implementamos-git-flow)
+  - [Convenciones de Commits](#convenciones-de-commits)
+- [Instalación y Desarrollo](#instalación-y-desarrollo)
+- [Configuración de Firebase](#configuración-de-firebase)
+- [Historial de Commits - Git Flow](#-historial-de-commits---git-flow)
+
+---
+
 ## Descripción del Proyecto
 
 SetiToDo es una aplicación de gestión de tareas que permite a los usuarios registrarse, autenticarse y organizar sus actividades de manera eficiente. El proyecto está construido con tecnologías modernas y sigue principios de arquitectura limpia para garantizar mantenibilidad y escalabilidad.
