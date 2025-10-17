@@ -27,12 +27,16 @@
       <div class="time-row">
         <mat-form-field appearance="outline" class="time-field">
           <mat-label>Hora inicio</mat-label>
-          <input matInput type="time" formControlName="startTime">
+          <input matInput [ngxTimepicker]="pickerStart" formControlName="startTime" readonly>
+          <ngx-material-timepicker-toggle matIconSuffix [for]="pickerStart"></ngx-material-timepicker-toggle>
+          <ngx-material-timepicker #pickerStart></ngx-material-timepicker>
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="time-field">
           <mat-label>Hora fin</mat-label>
-          <input matInput type="time" formControlName="endTime">
+          <input matInput [ngxTimepicker]="pickerEnd" formControlName="endTime" readonly>
+          <ngx-material-timepicker-toggle matIconSuffix [for]="pickerEnd"></ngx-material-timepicker-toggle>
+          <ngx-material-timepicker #pickerEnd></ngx-material-timepicker>
         </mat-form-field>
       </div>
 
