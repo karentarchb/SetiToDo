@@ -39,20 +39,23 @@
         </mat-card-content>
       </mat-card>
 
-      <mat-card class="profile-card">
+      <mat-card class="profile-card" *ngIf="showConfigurationCard">
         <mat-card-content>
           <h3><ion-icon name="settings"></ion-icon> Configuración</h3>
           <p class="card-description">Gestiona tu cuenta y preferencias</p>
-          <button
-            mat-raised-button
-            color="warn"
-            (click)="logout()"
-            class="logout-button">
-            <mat-icon>exit_to_app</mat-icon>
-            Cerrar Sesión
-          </button>
         </mat-card-content>
       </mat-card>
+
+      <div class="logout-section">
+        <button
+          mat-raised-button
+          color="warn"
+          (click)="logout()"
+          class="logout-button">
+          <mat-icon>exit_to_app</mat-icon>
+          Cerrar Sesión
+        </button>
+      </div>
     </div>
   </div>
 </ion-content>

@@ -102,18 +102,22 @@
           word-break: break-all;
         }
       }
+    }
+  }
 
-      .logout-button {
-        width: 100%;
-        height: 48px;
-        font-size: 16px;
-        font-weight: 600;
-        border-radius: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-      }
+  .logout-section {
+    margin-top: 1rem;
+
+    .logout-button {
+      width: 100%;
+      height: 48px;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
     }
   }
 }

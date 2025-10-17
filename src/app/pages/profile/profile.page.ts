@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
+import { FeatureFlagService } from '../../core/services/feature-flag.service';
 import { User } from '../../core/models/user.model';
 
 @Component({
@@ -11,14 +12,17 @@ import { User } from '../../core/models/user.model';
 })
 export class ProfilePage implements OnInit {
   user: User | null = null;
+  showConfigurationCard: boolean = false;
 
   constructor(
     private authService: AuthService,
+    private featureFlagService: FeatureFlagService,
     private router: Router
   ) {}
 
-  ngOnInit() {
+  async ngOnInit() {
     this.user = this.authService.getCurrentUser();
+    this.showConfigurationCard = await this.featureFlagService.getFeatureFlagValue();
   }
 
   async logout(): Promise<void> {
