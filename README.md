@@ -258,3 +258,22 @@ Las credenciales de Firebase están en:
 ## 📄 Licencia
 
 Este proyecto es de uso educativo.
+
+---
+
+## 📋 Historial de Commits - Git Flow
+
+### Auth:
+- Sistema completo de login y registro
+  - Firebase Authentication configurado
+  - Guards para protección de rutas
+  - Validadores personalizados (email con @.com, password match)
+  - Diseño responsive con Material y Bootstrap
+  - Notificaciones con MatSnackBar para mejor UX móvil
+  - Arquitectura limpia (core, shared, features)
+  - Componente auth-layout reutilizable con glassmorphism
+  - Formularios reactivos con validación cruzada
+  - Visualización de contraseña con iconos eye
+  - Integración completa con Firebase Auth (login, registro, logout)
+  - Modelo de usuario y servicio con patrón repository
+  - Rutas protegidas con functional guards
