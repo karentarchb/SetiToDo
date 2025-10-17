@@ -215,3 +215,4 @@ Las credenciales de Firebase están configuradas en los archivos de environment:
   - Stack tecnológico completo con descripciones
   - Enfoque para evaluación técnica profesional
   - Nota sobre mala práctica de incluir environments en repositorio
+  - Índice de contenidos clickeable para mejor navegación
