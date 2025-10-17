@@ -185,3 +185,12 @@ Las credenciales de Firebase están configuradas en los archivos de environment:
   - Integración completa con Firebase Auth (login, registro, logout)
   - Modelo de usuario y servicio con patrón repository
   - Rutas protegidas con functional guards
+
+### Documentación:
+- README técnico profesional
+  - Explicación detallada de arquitectura limpia implementada
+  - Justificación de decisiones técnicas (validators, guards, components)
+  - Beneficios específicos de Git Flow para el proyecto
+  - Documentación de estructura de carpetas y responsabilidades
+  - Stack tecnológico completo con descripciones
+  - Enfoque para evaluación técnica profesional
