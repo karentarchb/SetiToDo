@@ -60,17 +60,23 @@ src/
 ├── app/
 │   ├── core/                    # Funcionalidad central de la aplicación
 │   │   ├── guards/              # Protección de rutas (authGuard)
-│   │   ├── services/            # Servicios singleton (AuthService)
-│   │   ├── models/              # Interfaces y modelos de datos (User)
+│   │   ├── services/            # Servicios singleton (AuthService, TodoService, FeatureFlagService)
+│   │   ├── models/              # Interfaces y modelos de datos (User, Task)
 │   │   ├── interfaces/          # Contratos de servicios (IAuthService)
 │   │   └── validators/          # Validadores personalizados (email, password-match)
 │   ├── shared/                  # Componentes y módulos reutilizables
-│   │   ├── components/          # Componentes compartidos (auth-layout)
+│   │   ├── components/          # Componentes compartidos
+│   │   │   ├── auth-layout/     # Layout para login/register con glassmorphism
+│   │   │   └── task-modal/      # Modal para crear/editar tareas
 │   │   └── shared.module.ts     # Módulo de exportación de componentes comunes
 │   ├── auth/                    # Módulo de autenticación
 │   │   ├── login/               # Página de inicio de sesión
-│   │   └── register/            # Página de registro
-│   └── home/                    # Página principal de la aplicación
+│   │   └── register/            # Página de registro con validaciones
+│   ├── pages/                   # Páginas principales de la aplicación
+│   │   ├── tabs/                # Navegación por tabs (Home, Tareas, Perfil)
+│   │   ├── todo-list/           # Lista de tareas con CRUD completo
+│   │   └── profile/             # Perfil de usuario con feature flags
+│   └── home/                    # Página de inicio con resumen de tareas
 └── environments/                # Configuración por entorno (dev/prod)
 ```
 
@@ -283,3 +289,59 @@ Las credenciales de Firebase están configuradas en los archivos de environment:
   - Enfoque para evaluación técnica profesional
   - Nota sobre mala práctica de incluir environments en repositorio
   - Índice de contenidos clickeable para mejor navegación
+
+### ToDo List (Gestión de Tareas):
+- Sistema completo de CRUD de tareas
+  - Modelo de datos Task (description, startTime, endTime, repeatDays, completed)
+  - TodoService con Firebase Firestore para persistencia en tiempo real
+  - Integración por usuario (cada usuario ve solo sus tareas)
+  - Modal de creación/edición de tareas con Angular Material
+  - Timepicker personalizado con ngx-material-timepicker y tema morado
+  - Selección de días de repetición con checkboxes estilizados
+  - Validación de formularios reactivos con feedback visual
+  - Lista de tareas con checkboxes para marcar como completadas
+  - Chips visuales mostrando días de repetición (Lun, Mar, Mié, etc.)
+  - Diseño responsive con cards de Material Design
+  - Estados de carga y manejo de errores con try-catch
+  - Navegación por tabs integrada (Home, Tareas, Perfil)
+  - Filtrado automático de tareas completadas en la vista Home
+  - Visualización de primeras 5 tareas pendientes en Home
+  - Truncado de descripciones largas a 25 caracteres en Home
+  - Botón flotante (FAB) para agregar nuevas tareas
+  - Eliminación de campo "title" para simplificar UX
+
+### Perfil de Usuario:
+- Página de perfil completa con información del usuario
+  - Visualización de datos de Firebase Auth (displayName, email, uid)
+  - Avatar con icono de usuario y gradiente morado
+  - Cards de información con diseño glassmorphism
+  - Botón de cierre de sesión con confirmación
+  - Feature Flags con Firebase Remote Config
+    - FeatureFlagService integrado para A/B testing
+    - Parámetro "featureflag" (Boolean) controlado desde Firebase Console
+    - Tarjeta de "Configuración" mostrada/ocultada dinámicamente
+    - Caché inteligente: 0ms en desarrollo, 1 hora en producción
+    - Inicialización con valores por defecto (false)
+    - Manejo robusto de errores con fallback automático
+  - Diseño responsive optimizado para móviles
+  - Navegación integrada en sistema de tabs
+
+### Compilación Móvil (Android/iOS):
+- Migración completa de Capacitor a Apache Cordova
+  - Configuración multi-plataforma en config.xml
+  - Package ID: com.ktarch.setitodo
+  - Android: Min SDK 24, Target SDK 35, AndroidX habilitado
+  - iOS: Deployment target 13.0, Swift 5.0, WKWebView configurado
+  - Plugins nativos instalados (FirebaseX, StatusBar, Splashscreen, Device)
+  - Firebase configurado con appId web correcto
+  - BUILD.md con guía completa de compilación (481 líneas)
+    - Requisitos previos para Android (JDK, Android Studio, Gradle)
+    - Requisitos previos para iOS (Xcode, CocoaPods, ios-deploy)
+    - Instrucciones paso a paso para ambas plataformas
+    - Comandos para emuladores y dispositivos físicos
+    - Generación de APK/IPA para producción
+    - Configuración de google-services.json (Android)
+    - Configuración de GoogleService-Info.plist (iOS)
+    - Sección completa de solución de problemas
+  - README actualizado con sección de compilación móvil
+  - Comandos rápidos documentados para desarrollo ágil
